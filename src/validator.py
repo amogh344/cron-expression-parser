@@ -7,8 +7,22 @@ def validate_expression(expression):
         return False
 
     for field in fields:
-        if not field.replace("*","").replace("-", "").replace("/", "").isdigit():
+        cleaned = field.replace("*", "").replace("-", "").replace("/", "").replace(",", "")
+        if cleaned != "" and not cleaned.isdigit():
             return False
+
+    ranges = [
+        (0, 59),
+        (0, 23),
+        (1, 31),
+        (1, 12),
+        (0, 6)
+    ]
+
+    for i in range(5):
+        if not validate_range(fields[i], ranges[i][0], ranges[i][1]):
+            return False
+
     return True
 
 
