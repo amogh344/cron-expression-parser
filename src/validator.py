@@ -1,10 +1,12 @@
 
 
 def validate_expression(expression):
-    fields = expression.split()
+    parts = expression.strip().split(maxsplit=5)
 
-    if len(fields) != 5:
+    if len(parts) < 6:
         return False
+
+    fields = parts[:5]
 
     for field in fields:
         cleaned = field.replace("*", "").replace("-", "").replace("/", "").replace(",", "")
