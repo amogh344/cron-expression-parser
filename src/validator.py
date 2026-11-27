@@ -10,3 +10,15 @@ def validate_expression(expression):
         if not field.replace("*","").replace("-", "").replace("/", "").isdigit():
             return False
     return True
+
+
+def validate_range(field, minimum, maximum):
+    if field.isdigit():
+        number = int(field)
+
+        if minimum <= number <= maximum:
+            return True
+        else:
+            return False
+
+    return True
