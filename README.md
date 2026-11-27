@@ -44,3 +44,21 @@ command       /usr/bin/find
 - **month**: 1 - 12
 - **day of week**: 0 - 6 (0 = Sunday)
 
+## Project Structure
+
+```text
+.
+├── main.py              # CLI entry point
+├── src/
+│   ├── validator.py     # Expression structure and range validation
+│   ├── parser.py        # Field expansion logic
+│   └── formatter.py     # Table output formatting
+└── README.md
+```
+
+## Requirements
+
+- Python 3.8+
+- Standard library only (no external dependencies)
+
+
