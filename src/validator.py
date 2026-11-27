@@ -27,11 +27,30 @@ def validate_expression(expression):
 
 
 def validate_range(field, minimum, maximum):
-    if field.isdigit():
-        number = int(field)
+    subfields = field.split(",")
+    for sub in subfields:
+        if "/" in sub:
+            parts = sub.split("/")
+            if len(parts) != 2 or not parts[1].isdigit() or int(parts[1]) <= 0:
+                return False
+            sub = parts[0]
 
-        if minimum <= number <= maximum:
-            return True
+        if sub == "*":
+            continue
+
+        if "-" in sub:
+            parts = sub.split("-")
+            if len(parts) != 2 or not parts[0].isdigit() or not parts[1].isdigit():
+                return False
+            start, end = int(parts[0]), int(parts[1])
+            if start > end or not (minimum <= start <= maximum) or not (minimum <= end <= maximum):
+                return False
+            continue
+
+        if sub.isdigit():
+            val = int(sub)
+            if not (minimum <= val <= maximum):
+                return False
         else:
             return False
 
