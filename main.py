@@ -1,6 +1,11 @@
 from src.validator import validate_expression
+from src.parser import parse_expression
 
-print(validate_expression("*/15 9-17 * 1,6 1-5 /usr/bin/find"))
-print(validate_expression("*/15 9-17 * 1,6 1-5"))
+expr = "*/15 0 1,15 * 1-5 /usr/bin/find"
+if validate_expression(expr):
+    fields, cmd = parse_expression(expr)
+    print(fields)
+    print(cmd)
+
 
 
